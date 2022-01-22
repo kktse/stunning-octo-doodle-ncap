@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  database:
+    image: postgres:14.1-alpine
+    environment:
+      POSTGRES_DB: stunning-octo-doodle-ncap
+      POSTGRES_USER: stunning-octo-doodle-ncap-user
+      POSTGRES_PASSWORD: stunning-octo-doodle-ncap-user-WfQN[}Q6G;,iGCYtA%Z]Wj7j=]it&S
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/posgresql/data
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    env_file:
+      - ./.env.dev
+    volumes:
+      - ./stunning-octo-doodle-ncap/:/usr/src/app/
+    ports:
+      - 8000:8000
+    depends_on:
+      - database
+
+volumes:
+  pgdata:
