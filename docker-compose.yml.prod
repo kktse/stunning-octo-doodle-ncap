@@ -9,4 +9,4 @@ services:
     volumes:
       - ./stunning-octo-doodle-ncap/:/usr/src/app/
     ports:
-      - 8000:80
+      - 80:8000
